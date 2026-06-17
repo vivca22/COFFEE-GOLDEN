@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Coffee Golden, app web interactiva para pedidos, trazabilidad y recompensas.">
+  <title>Coffee Golden | App</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="phone-shell" aria-label="Coffee Golden app">
+    <section class="phone-screen">
+      <header class="app-topbar">
+        <div>
+          <span class="eyebrow">Golden Chain</span>
+          <h1>Coffee Golden</h1>
+        </div>
+        <button class="icon-button" type="button" data-tab-target="profile" aria-label="Abrir perfil">CG</button>
+      </header>
+
+      <section class="tab-view is-active" id="home" aria-labelledby="homeTitle">
+        <div class="hero-card">
+          <span class="hero-label">Coffee Coins</span>
+          <h2 id="homeTitle"><span id="coinBalance">0</span> coins</h2>
+          <p>Gana puntos con cada pedido y revisa la trazabilidad del cafe.</p>
+          <button class="button dark" type="button" data-tab-target="menu">Pedir ahora</button>
+        </div>
+
+        <section class="quick-actions" aria-label="Acciones principales">
+          <button type="button" data-tab-target="menu">
+            <span>Menu</span>
+            <strong>Personaliza</strong>
+          </button>
+          <button type="button" data-tab-target="trace">
+            <span>QR</span>
+            <strong>Origen</strong>
+          </button>
+          <button type="button" data-tab-target="wallet">
+            <span>Coins</span>
+            <strong>Premios</strong>
+          </button>
+        </section>
+
+        <section>
+          <div class="section-heading">
+            <h2>Pedido activo</h2>
+            <span id="activeOrderCount">0 items</span>
+          </div>
+          <div class="cart-preview" id="cartPreview">
+            <p class="empty-state">Selecciona una bebida para crear tu pedido.</p>
+          </div>
+        </section>
+      </section>
+
+      <section class="tab-view" id="menu" aria-labelledby="menuTitle">
+        <div class="section-heading">
+          <h2 id="menuTitle">Menu digital</h2>
+          <span>Elige tu cafe</span>
+        </div>
+        <div class="menu-list" id="menuList"></div>
+      </section>
+
+      <section class="tab-view" id="order" aria-labelledby="orderTitle">
+        <div class="section-heading">
+          <h2 id="orderTitle">Tu pedido</h2>
+          <span id="orderTotal">$0.00</span>
+        </div>
+
+        <div class="order-items" id="orderItems">
+          <p class="empty-state">Tu carrito esta vacio.</p>
+        </div>
+
+        <form class="checkout-form" id="orderForm">
+          <label for="customerName">Nombre</label>
+          <input id="customerName" name="customerName" type="text" placeholder="Ej. Sofia" required>
+
+          <label for="pickupMode">Entrega</label>
+          <select id="pickupMode" name="pickupMode">
+            <option value="Retiro en tienda">Retiro en tienda</option>
+            <option value="Entrega a domicilio">Entrega a domicilio</option>
+          </select>
+
+          <label for="notes">Notas</label>
+          <textarea id="notes" name="notes" rows="3" placeholder="Ej. sin azucar, leche vegetal"></textarea>
+
+          <button class="button primary" type="submit">Confirmar pedido</button>
+          <p class="status-message" id="statusMessage" role="status"></p>
+        </form>
+      </section>
+
+      <section class="tab-view" id="trace" aria-labelledby="traceTitle">
+        <div class="section-heading">
+          <h2 id="traceTitle">Pasaporte QR</h2>
+          <span>Lote CG-2026-EC</span>
+        </div>
+        <div class="qr-card">
+          <div class="qr-grid" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <button class="button dark" type="button" id="scanButton">Escanear demo</button>
+        </div>
+        <div class="trace-panel" id="tracePanel">
+          <p class="empty-state">Toca escanear para ver el origen del cafe.</p>
+        </div>
+      </section>
+
+      <section class="tab-view" id="wallet" aria-labelledby="walletTitle">
+        <div class="section-heading">
+          <h2 id="walletTitle">Coffee Coins</h2>
+          <span>Recompensas</span>
+        </div>
+        <div class="wallet-card">
+          <span>Saldo disponible</span>
+          <strong><span id="walletBalance">0</span> coins</strong>
+        </div>
+        <div class="reward-list">
+          <article>
+            <span>50 coins</span>
+            <strong>Shot extra gratis</strong>
+          </article>
+          <article>
+            <span>120 coins</span>
+            <strong>10% de descuento</strong>
+          </article>
+          <article>
+            <span>250 coins</span>
+            <strong>Bebida exclusiva</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="tab-view" id="profile" aria-labelledby="profileTitle">
+        <div class="section-heading">
+          <h2 id="profileTitle">Actividad</h2>
+          <span>Firestore</span>
+        </div>
+        <div class="orders-list" id="ordersList">
+          <p class="empty-state">Todavia no hay pedidos guardados.</p>
+        </div>
+      </section>
+
+      <nav class="bottom-nav" aria-label="Navegacion de la app">
+        <button class="is-active" type="button" data-tab-target="home" aria-label="Inicio">
+          <span>Inicio</span>
+        </button>
+        <button type="button" data-tab-target="menu" aria-label="Menu">
+          <span>Menu</span>
+        </button>
+        <button type="button" data-tab-target="order" aria-label="Pedido">
+          <span>Pedido</span>
+        </button>
+        <button type="button" data-tab-target="trace" aria-label="QR">
+          <span>QR</span>
+        </button>
+        <button type="button" data-tab-target="wallet" aria-label="Coins">
+          <span>Coins</span>
+        </button>
+      </nav>
+    </section>
+  </main>
+
+  <script type="module" src="./script.js"></script>
+</body>
+</html>
