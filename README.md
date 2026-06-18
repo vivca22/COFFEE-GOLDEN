@@ -1,64 +1,184 @@
-# Coffee Golden - Golden Chain
-Plataforma interactiva de modernización cafetera y trazabilidad que transforma el consumo tradicional de café en una experiencia digital personalizada mediante Blockchain, códigos QR y gamificación.
-# Integrantes
-* SOFIA TORRES – Líder
-* LUANA HERRERA – Diseñador UI/UX
-* Icari Vasconez – Investigador
-* Ian Rodriguez – Especialista en Operaciones 
-* Evelyn Cando – Mentor / Asesor
+# COFFEE GOLDEN
 
-# Problema que se quiere resolver
+<p align="center">
+  <img src="assets/logo-emblema.webp" alt="Logo Coffee Golden" width="150">
+</p>
 
-El consumo de café es un hábito diario; sin embargo, la experiencia en el mercado actual sigue siendo lineal y automática. Los consumidores actuales, especialmente los jóvenes, buscan experiencias modernas e interactivas, pero la mayoría de las cafeterías tradicionales se limitan a vender la bebida sin aportar valor emocional, información del producto o interacción digital. 
+<p align="center">
+  <strong>Experiencia web que conecta cada producto de café y cacao ecuatoriano con su origen, su historia y una comunidad de consumidores mediante códigos QR, trazabilidad y recompensas.</strong><br>
+  Escanea. Descubre. Acumula. Disfruta.
+</p>
 
-Esta desconexión genera una pérdida de valor para el cliente, quien desconoce el origen, los ingredientes y la calidad real del café que consume de manera cotidiana. Adicionalmente, las empresas carecen de herramientas tecnológicas eficientes para mitigar el estrés de los usuarios, promover hábitos saludables o fidelizar a sus clientes de forma transparente y dinámica.
+---
 
-# Solución propuesta y cómo funciona
+## Integrantes
 
-**Golden Chain** es una aplicación móvil que fusiona el mundo físico del café con el entorno digital para transformar la experiencia del consumidor. 
+| Integrante | Rol |
+|---|---|
+| Sofía Torres | Líder del proyecto |
+| Luana Herrera | Diseño UI/UX |
+| Icari Vásconez | Investigación |
+| Ian Rodríguez | Especialista en operaciones |
+| Evelyn Cando | Mentora y asesora |
 
-La plataforma permite a los usuarios:
-1. **Personalización y Pedidos:** Visualizar un menú digital interactivo para elegir, personalizar bebidas según sus gustos específicos y realizar pedidos a domicilio de forma rápida.
-2. **Trazabilidad mediante códigos QR:** Cada producto físico incluye un código QR único. Al ser escaneado, el usuario accede a un pasaporte digital que detalla el origen exacto del grano, la fecha de preparación, los ingredientes y recomendaciones de bienestar para disminuir el estrés diario.
-3. **Fidelización Transparente:** Implementa un sistema de recompensas denominado **Coffee Coins**, donde cada compra acumula puntos inmutables canjeables por descuentos, promociones o productos exclusivos dentro del ecosistema de la marca.
+---
 
-# ODS al que se vincula
+## Problema Que Se Quiere Resolver
 
-### ODS 9 – Industria, Innovación e Infraestructura
-El proyecto introduce innovación tecnológica en un sector agrícola y comercial tradicional. Mediante la integración de la aplicación móvil, contratos digitales y códigos QR, promueve la modernización de los servicios locales y mejora la infraestructura de atención al cliente a través de tecnología accesible.
+El consumo de café y cacao forma parte de la identidad productiva del Ecuador, pero para muchos consumidores la experiencia termina en la compra. Generalmente no existe una conexión clara con el origen del producto, las comunidades productoras, el proceso de cultivo, el tostado o la transformación del cacao.
 
-# Tecnologías que se usarán
+Los emprendimientos también necesitan herramientas digitales accesibles para comunicar el valor de sus productos, fortalecer la confianza del cliente y generar fidelización sin depender de aplicaciones móviles complejas.
 
-## Frontend y Mobile
-* React Native / Flutter (Para despliegue en iOS y Android)
-* Tailwind CSS
+## Solución Propuesta
 
-## Backend y Arquitectura
-* Node.js / Express
-* Firebase (Gestión de base de datos en tiempo real y autenticación de usuarios)
+**Coffee Golden** es una experiencia web que conecta el producto físico con un pasaporte digital mediante un código QR. El usuario escanea el empaque y accede directamente a una página donde puede conocer la historia del lote, explorar territorios productores de café y cacao, acumular Coffee Coins y comprar productos en sobres filtrantes.
 
-## Blockchain y Trazabilidad
-* Smart Contracts para el registro inmutable del origen del café y lotes de producción
-* Protocolo criptográfico para la gestión segura y transparente del sistema de puntos (Coffee Coins)
+La plataforma combina identidad ecuatoriana, educación sobre el origen, comercio digital y gamificación en una web adaptable para computadoras y teléfonos.
 
-## Herramientas de Diseño y Planificación
-* Figma (Diseño de interfaces UI/UX y Wireframes)
-* Miro (Mapeo de arquitectura y Canvas del proyecto)
+## Cómo Funciona
 
-## Control de versiones y Hosting
-* GitHub
-* Vercel / Netlify
+| Paso | Proceso |
+|---|---|
+| 1 | El usuario encuentra un código QR en el empaque Coffee Golden. |
+| 2 | Al escanearlo, el QR abre directamente el pasaporte web del producto. |
+| 3 | El pasaporte muestra origen, finca, proceso, nivel de tostado, notas y lote. |
+| 4 | El usuario explora el mapa interactivo de territorios cafeteros y cacaoteros del Ecuador. |
+| 5 | Cada compra y escaneo permite acumular **Coffee Coins**. |
+| 6 | Los puntos pueden convertirse en descuentos, promociones y productos. |
+| 7 | El usuario agrega productos al carrito y registra su pedido desde la misma web. |
 
-# Funcionalidades Principales
+## Productos
 
-* **Menú Digital Interactivo:** Interfaz dinámica para la selección y personalización de bebidas agregando ingredientes especiales.
-* **Módulo de Escaneo QR:** Herramienta de lectura integrada para desplegar la trazabilidad e historia del café.
-* **Monedero Digital (Coffee Coins Wallet):** Sistema seguro para la acumulación, visualización y auditoría de puntos de fidelidad.
-* **Ecosistema Multicanal:** Conexión directa entre los puntos de venta físicos (cafetería), canales de distribución tradicionales y el entorno digital de la aplicación.
-* **Métricas de Impacto Integradas:** Panel interno para evaluar el crecimiento del proyecto mediante el número de usuarios activos, frecuencia de compras y retención en la aplicación.
-## Recomendaciones de Gestión para el Portafolio
-Como este proyecto forma parte del portafolio oficial, te sugiero estructurar las carpetas del repositorio de la siguiente manera para acompañar a este archivo:
+| Producto | Descripción |
+|---|---|
+| Sobre filtrante | Café de grano seleccionado en un filtro portátil, listo para preparar sobre una taza. |
+| Caja Coffee Golden | Presentación con varios sobres individuales para casa, oficina o regalo. |
+| Combo Golden | Sobres filtrantes, galletas artesanales y acceso al pasaporte cafetero QR. |
 
-/docs: Para incluir el documento de propuesta inicial y capturas del tablero de Miro.
+## ODS Vinculados
 
-/design: Para colocar el PDF exportado de Figma o imágenes del prototipo de la app móvil.
+| ODS | Nombre | Aplicación En Coffee Golden |
+|---|---|---|
+| ODS 8 | Trabajo Decente y Crecimiento Económico | Visibiliza el trabajo de productores y fortalece emprendimientos vinculados al café y cacao. |
+| ODS 9 | Industria, Innovación e Infraestructura | Digitaliza la experiencia del producto mediante QR, trazabilidad y comercio web. |
+| ODS 12 | Producción y Consumo Responsables | Promueve decisiones de compra informadas y una mayor comprensión del origen del producto. |
+
+## Tecnologías
+
+| Categoría | Tecnología |
+|---|---|
+| Frontend | HTML5, CSS3 y JavaScript modular |
+| Diseño | Figma y diseño web adaptable |
+| Datos de respaldo | localStorage |
+| Base de datos preparada | Firebase Firestore |
+| Integración física-digital | Códigos QR y pasaporte de producto |
+| Gamificación | Coffee Coins y recompensas |
+| Hosting | GitHub Pages |
+| Control de versiones | GitHub |
+
+## Funcionalidades Principales
+
+| Módulo | Descripción |
+|---|---|
+| Portada QR | Confirma el lote escaneado y presenta la historia del producto. |
+| Pasaporte Cafetero | Muestra origen, finca, proceso, tostado, notas y código de lote. |
+| Mapa Interactivo | Presenta provincias referenciales de café, cacao y biodiversidad del Ecuador. |
+| Coffee Coins | Visualiza el saldo y explica cómo obtener recompensas. |
+| Catálogo | Presenta productos con fotografías, precios y Coffee Coins generados. |
+| Carrito y Pedido | Permite seleccionar productos, calcular el total y registrar información de entrega. |
+| Firestore | Guarda y consulta pedidos cuando Firebase está configurado. |
+| Modo Local | Mantiene la demostración funcional con localStorage cuando Firebase no está configurado. |
+
+## Arquitectura De La Plataforma
+
+```text
+Código QR del producto
+        |
+        v
+GitHub Pages / index.html
+        |
+        +-- Pasaporte del lote
+        +-- Mapa de café y cacao
+        +-- Coffee Coins
+        +-- Catálogo y carrito
+        |
+        v
+Firebase Firestore
+        |
+        +-- Colección de compras
+        +-- Lectura de pedidos recientes
+```
+
+## Mapa De Café Y Cacao
+
+<p align="center">
+  <img src="assets/mapa-ecuador-provincias.webp" alt="Mapa ilustrado de territorios de café y cacao del Ecuador" width="760">
+</p>
+
+El mapa funciona como una guía cultural referencial. Cada punto interactivo presenta la región, el producto principal y una breve descripción del territorio. No representa un ranking absoluto de calidad.
+
+## Impacto Esperado
+
+- Acercar a los consumidores a la historia del café y cacao ecuatoriano.
+- Visibilizar territorios, productores y procesos de transformación.
+- Fortalecer la confianza mediante información clara del producto.
+- Facilitar la venta digital de sobres filtrantes Coffee Golden.
+- Incentivar la fidelización mediante Coffee Coins.
+- Promover un consumo informado y responsable.
+
+---
+
+## MVP Web
+
+[Abrir Coffee Golden](https://vivca22.github.io/COFFEE-GOLDEN/)
+
+## Video Demo
+
+[Ver video de Coffee Golden en Instagram](https://www.instagram.com/reel/DZsc8pOxtmR/?igsh=MXBzM3puaXk0NTBwbg==)
+
+## Estructura Del Proyecto
+
+```text
+COFFEE-GOLDEN/
+|-- index.html
+|-- styles.css
+|-- script.js
+|-- firebase-config.js
+|-- README.md
+`-- assets/
+    |-- logo-emblema.webp
+    |-- hero-origen-v2.webp
+    |-- mapa-ecuador-provincias.webp
+    |-- sobre-filtrante.webp
+    |-- caja-sobres.webp
+    `-- combo-golden.webp
+```
+
+## Configuración De Firebase
+
+1. Crear un proyecto en [Firebase Console](https://console.firebase.google.com/).
+2. Registrar una aplicación web.
+3. Activar Firestore Database.
+4. Copiar la configuración pública de Firebase.
+5. Reemplazar los valores de ejemplo dentro de `firebase-config.js`.
+
+No se deben subir claves privadas, credenciales de servicio ni secretos de servidor al repositorio.
+
+## Despliegue En GitHub Pages
+
+La publicación se realiza desde:
+
+```text
+Settings -> Pages -> Deploy from a branch -> main -> /(root)
+```
+
+La aplicación queda disponible en:
+
+https://vivca22.github.io/COFFEE-GOLDEN/
+
+---
+
+<p align="center">
+  <strong>Coffee Golden</strong><br>
+  Brillo, origen y calidad en cada experiencia.
+</p>
