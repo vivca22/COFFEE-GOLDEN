@@ -8,78 +8,55 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
 
-const drinks = [
+const products = [
   {
-    id: "latte-golden",
-    name: "Latte Golden",
-    detail: "Espresso, leche cremosa y toque de panela.",
-    price: 3.75,
-    coins: 18,
-    image: "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=500&q=80"
+    id: "sobre-individual",
+    name: "Sobre filtrante",
+    description: "Cafe de grano seleccionado en un filtro portatil. Listo en cualquier lugar.",
+    price: 3.5,
+    coins: 35,
+    image: "./assets/sobre-filtrante.webp"
   },
   {
-    id: "americano-origen",
-    name: "Americano de origen",
-    detail: "Cafe ecuatoriano con perfil cacao y citricos.",
-    price: 2.6,
-    coins: 12,
-    image: "https://images.unsplash.com/photo-1497636577773-f1231844b336?auto=format&fit=crop&w=500&q=80"
+    id: "caja-sobres",
+    name: "Caja Coffee Golden",
+    description: "Presentacion premium con sobres individuales para casa, oficina o regalo.",
+    price: 24,
+    coins: 80,
+    image: "./assets/caja-sobres.webp"
   },
   {
-    id: "cold-brew",
-    name: "Cold Brew",
-    detail: "Extraccion lenta, suave y refrescante.",
-    price: 3.25,
-    coins: 16,
-    image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=500&q=80"
-  },
-  {
-    id: "capuccino-canela",
-    name: "Capuccino con canela",
-    detail: "Espuma sedosa, canela y aroma tostado.",
-    price: 3.1,
-    coins: 14,
-    image: "https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=500&q=80"
+    id: "combo-golden",
+    name: "Combo Golden",
+    description: "Sobres filtrantes, galletas artesanales y pasaporte cafetero QR.",
+    price: 29.5,
+    coins: 100,
+    image: "./assets/combo-golden.webp"
   }
 ];
 
 const state = {
-  cart: [],
-  coins: Number(localStorage.getItem("coffee-golden-coins") || 0)
+  cart: []
 };
 
 const elements = {
-  tabs: document.querySelectorAll(".tab-view"),
-  navButtons: document.querySelectorAll("[data-tab-target]"),
-  bottomButtons: document.querySelectorAll(".bottom-nav [data-tab-target]"),
-  menuList: document.querySelector("#menuList"),
-  cartPreview: document.querySelector("#cartPreview"),
-  orderItems: document.querySelector("#orderItems"),
-  activeOrderCount: document.querySelector("#activeOrderCount"),
-  orderTotal: document.querySelector("#orderTotal"),
-  coinBalance: document.querySelector("#coinBalance"),
-  walletBalance: document.querySelector("#walletBalance"),
+  productGrid: document.querySelector("#productGrid"),
+  cartList: document.querySelector("#cartList"),
+  cartTotal: document.querySelector("#cartTotal"),
   orderForm: document.querySelector("#orderForm"),
-  statusMessage: document.querySelector("#statusMessage"),
   ordersList: document.querySelector("#ordersList"),
-  scanButton: document.querySelector("#scanButton"),
-  tracePanel: document.querySelector("#tracePanel")
+  statusMessage: document.querySelector("#statusMessage"),
+  passportData: document.querySelector("#passportData"),
+  coinBalance: document.querySelector("#coinBalance"),
+  balanceLarge: document.querySelector("#balanceLarge"),
+  menuButton: document.querySelector("#menuButton"),
+  navMenu: document.querySelector("#navMenu")
 };
 
-const localOrdersKey = "coffee-golden-orders";
-
-function setActiveTab(tabId) {
-  elements.tabs.forEach((tab) => {
-    tab.classList.toggle("is-active", tab.id === tabId);
-  });
-
-  elements.bottomButtons.forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.tabTarget === tabId);
-  });
-}
+const localOrdersKey = "coffee-golden-web-orders";
 
 function formatMoney(value) {
-  return `$${value.toFixed(2)}`;
+  return `S/ ${value.toFixed(2)}`;
 }
 
 function escapeHtml(value) {
@@ -91,18 +68,16 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
-function renderMenu() {
-  elements.menuList.innerHTML = drinks
-    .map((drink) => `
-      <article class="drink-card">
-        <img src="${drink.image}" alt="${escapeHtml(drink.name)}">
-        <div>
-          <h3>${escapeHtml(drink.name)}</h3>
-          <p>${escapeHtml(drink.detail)}</p>
-          <div class="drink-meta">
-            <strong>${formatMoney(drink.price)}</strong>
-            <button class="add-button" type="button" data-add-drink="${drink.id}">Agregar</button>
-          </div>
+function renderProducts() {
+  elements.productGrid.innerHTML = products
+    .map((product) => `
+      <article class="product-card">
+        <img src="${product.image}" alt="${escapeHtml(product.name)}">
+        <div class="product-body">
+          <div class="product-title-row"><h3>${escapeHtml(product.name)}</h3><strong class="product-price">${formatMoney(product.price)}</strong></div>
+          <p>${escapeHtml(product.description)}</p>
+          <div class="coins-earned"><span class="mini-coin">C</span> +${product.coins} Coffee Coins</div>
+          <button class="add-button" type="button" data-add-product="${product.id}">Agregar al pedido</button>
         </div>
       </article>
     `)
@@ -113,52 +88,44 @@ function getCartTotal() {
   return state.cart.reduce((total, item) => total + item.price, 0);
 }
 
-function getCartCoins() {
-  return state.cart.reduce((total, item) => total + item.coins, 0);
-}
-
 function renderCart() {
-  const count = state.cart.length;
-  elements.activeOrderCount.textContent = `${count} ${count === 1 ? "item" : "items"}`;
-  elements.orderTotal.textContent = formatMoney(getCartTotal());
-
-  const content = count
-    ? state.cart.map((item, index) => `
+  if (!state.cart.length) {
+    elements.cartList.innerHTML = '<p class="empty-state">Selecciona una presentacion para iniciar el pedido.</p>';
+  } else {
+    elements.cartList.innerHTML = state.cart
+      .map((item, index) => `
         <article class="cart-row">
           <div>
             <strong>${escapeHtml(item.name)}</strong>
-            <span>${formatMoney(item.price)} - ${item.coins} coins</span>
+            <span>${formatMoney(item.price)}</span>
           </div>
-          <button class="remove-button" type="button" data-remove-item="${index}">Quitar</button>
+          <button class="remove-button" type="button" data-remove-item="${index}" aria-label="Quitar ${escapeHtml(item.name)}">×</button>
         </article>
-      `).join("")
-    : '<p class="empty-state">Tu carrito esta vacio.</p>';
+      `)
+      .join("");
+  }
 
-  elements.orderItems.innerHTML = content;
-  elements.cartPreview.innerHTML = count
-    ? content
-    : '<p class="empty-state">Selecciona una bebida para crear tu pedido.</p>';
+  elements.cartTotal.textContent = formatMoney(getCartTotal());
 }
 
-function renderCoins() {
-  elements.coinBalance.textContent = state.coins;
-  elements.walletBalance.textContent = state.coins;
-  localStorage.setItem("coffee-golden-coins", String(state.coins));
-}
+function addProduct(productId) {
+  const product = products.find((item) => item.id === productId);
 
-function addDrink(drinkId) {
-  const drink = drinks.find((item) => item.id === drinkId);
+  if (!product) return;
 
-  if (!drink) return;
-
-  state.cart.push(drink);
+  state.cart.push(product);
   renderCart();
-  setActiveTab("order");
+  document.querySelector("#comprar").scrollIntoView({ behavior: "smooth" });
 }
 
 function removeCartItem(index) {
   state.cart.splice(index, 1);
   renderCart();
+}
+
+function setStatus(message, isError = false) {
+  elements.statusMessage.textContent = message;
+  elements.statusMessage.style.color = isError ? "#9f2f2f" : "#2d725c";
 }
 
 function readLocalOrders() {
@@ -171,24 +138,20 @@ function saveLocalOrder(order) {
   renderOrders(orders);
 }
 
-function setStatus(message, isError = false) {
-  elements.statusMessage.textContent = message;
-  elements.statusMessage.style.color = isError ? "#a8534f" : "#2f7a63";
-}
-
 function buildOrder(formData) {
   return {
     customerName: formData.get("customerName").trim(),
-    pickupMode: formData.get("pickupMode"),
+    customerEmail: formData.get("customerEmail").trim(),
+    deliveryMode: formData.get("deliveryMode"),
     notes: formData.get("notes").trim(),
     items: state.cart.map((item) => ({
       id: item.id,
       name: item.name,
-      price: item.price,
-      coins: item.coins
+      price: item.price
     })),
     total: getCartTotal(),
-    coinsEarned: getCartCoins(),
+    productType: "Cafe en sobres filtrantes portatiles",
+    source: "Pasaporte cafetero web",
     createdAt: new Date().toISOString()
   };
 }
@@ -197,44 +160,43 @@ async function submitOrder(event) {
   event.preventDefault();
 
   if (!state.cart.length) {
-    setStatus("Agrega al menos una bebida antes de confirmar.", true);
+    setStatus("Agrega al menos una presentacion de sobres filtrantes.", true);
     return;
   }
 
   const order = buildOrder(new FormData(elements.orderForm));
 
-  if (!order.customerName) {
-    setStatus("Escribe el nombre del cliente.", true);
+  if (!order.customerName || !order.customerEmail) {
+    setStatus("Completa tu nombre y correo para registrar la compra.", true);
     return;
   }
 
   try {
     if (firebaseReady && db) {
-      await addDoc(collection(db, "pedidos"), {
+      await addDoc(collection(db, "compras"), {
         ...order,
         createdAt: serverTimestamp()
       });
-      setStatus("Pedido guardado en Firebase Firestore.");
+      setStatus("Compra registrada en Firebase Firestore.");
     } else {
       saveLocalOrder(order);
-      setStatus("Pedido guardado localmente. Agrega Firebase para guardar en Firestore.");
+      setStatus("Compra guardada localmente. Agrega Firebase para guardar en Firestore.");
     }
 
-    state.coins += order.coinsEarned;
     state.cart = [];
     elements.orderForm.reset();
-    renderCoins();
     renderCart();
-    setActiveTab("profile");
   } catch (error) {
-    console.error("Error al guardar el pedido:", error);
-    setStatus("No se pudo guardar. Revisa Firebase y las reglas de Firestore.", true);
+    console.error("Error al registrar la compra:", error);
+    setStatus("No se pudo registrar la compra. Revisa Firebase y las reglas de Firestore.", true);
   }
 }
 
 function renderOrders(orders) {
+  if (!elements.ordersList) return;
+
   if (!orders.length) {
-    elements.ordersList.innerHTML = '<p class="empty-state">Todavia no hay pedidos guardados.</p>';
+    elements.ordersList.innerHTML = '<p class="empty-state">Todavia no hay compras registradas.</p>';
     return;
   }
 
@@ -242,7 +204,7 @@ function renderOrders(orders) {
     .map((order) => {
       const items = Array.isArray(order.items)
         ? order.items.map((item) => item.name).join(", ")
-        : "Pedido";
+        : "Sobres filtrantes";
       const date = order.createdAt?.toDate
         ? order.createdAt.toDate().toLocaleString("es-EC")
         : new Date(order.createdAt).toLocaleString("es-EC");
@@ -253,7 +215,7 @@ function renderOrders(orders) {
           <p>${escapeHtml(items)}</p>
           <footer>
             <strong>${formatMoney(Number(order.total || 0))}</strong>
-            <span>${Number(order.coinsEarned || 0)} coins - ${date}</span>
+            <span>${date}</span>
           </footer>
         </article>
       `;
@@ -267,7 +229,7 @@ function listenToOrders() {
     return;
   }
 
-  const ordersQuery = query(collection(db, "pedidos"), orderBy("createdAt", "desc"));
+  const ordersQuery = query(collection(db, "compras"), orderBy("createdAt", "desc"));
 
   onSnapshot(
     ordersQuery,
@@ -276,39 +238,21 @@ function listenToOrders() {
         id: doc.id,
         ...doc.data()
       }));
-
       renderOrders(orders);
     },
     (error) => {
-      console.error("Error al leer pedidos:", error);
+      console.error("Error al leer compras:", error);
       renderOrders(readLocalOrders());
     }
   );
 }
 
-function renderTraceDemo() {
-  elements.tracePanel.innerHTML = `
-    <ul class="trace-list">
-      <li><span>Origen</span><strong>Loja, Ecuador</strong></li>
-      <li><span>Productor</span><strong>Finca El Dorado</strong></li>
-      <li><span>Tueste</span><strong>Medio</strong></li>
-      <li><span>Lote</span><strong>CG-2026-EC</strong></li>
-      <li><span>Bienestar</span><strong>Pausa de 5 min</strong></li>
-    </ul>
-  `;
-}
-
 document.addEventListener("click", (event) => {
-  const tabButton = event.target.closest("[data-tab-target]");
-  const addButton = event.target.closest("[data-add-drink]");
+  const addButton = event.target.closest("[data-add-product]");
   const removeButton = event.target.closest("[data-remove-item]");
 
-  if (tabButton) {
-    setActiveTab(tabButton.dataset.tabTarget);
-  }
-
   if (addButton) {
-    addDrink(addButton.dataset.addDrink);
+    addProduct(addButton.dataset.addProduct);
   }
 
   if (removeButton) {
@@ -317,9 +261,28 @@ document.addEventListener("click", (event) => {
 });
 
 elements.orderForm.addEventListener("submit", submitOrder);
-elements.scanButton.addEventListener("click", renderTraceDemo);
+elements.menuButton.addEventListener("click", () => {
+  const isOpen = elements.navMenu.classList.toggle("open");
+  elements.menuButton.setAttribute("aria-expanded", String(isOpen));
+});
+elements.navMenu.addEventListener("click", (event) => {
+  if (event.target.closest("a")) {
+    elements.navMenu.classList.remove("open");
+    elements.menuButton.setAttribute("aria-expanded", "false");
+  }
+});
 
-renderMenu();
+document.querySelectorAll(".map-marker").forEach((marker) => {
+  marker.addEventListener("click", () => {
+    document.querySelectorAll(".map-marker").forEach((item) => item.classList.remove("active"));
+    marker.classList.add("active");
+    document.querySelector("#territoryTitle").textContent = marker.dataset.territory;
+    document.querySelector("#territoryRegion").textContent = marker.dataset.region;
+    document.querySelector("#territoryProduct").textContent = marker.dataset.product;
+    document.querySelector("#territoryDescription").textContent = marker.dataset.description;
+  });
+});
+
+renderProducts();
 renderCart();
-renderCoins();
 listenToOrders();

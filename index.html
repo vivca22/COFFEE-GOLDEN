@@ -3,165 +3,208 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Coffee Golden, app web interactiva para pedidos, trazabilidad y recompensas.">
-  <title>Coffee Golden | App</title>
+  <meta name="description" content="Coffee Golden: cafe en sobres filtrantes, pasaporte cafetero QR y recompensas Coffee Coins.">
+  <title>Coffee Golden | Tu pausa perfecta</title>
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <main class="phone-shell" aria-label="Coffee Golden app">
-    <section class="phone-screen">
-      <header class="app-topbar">
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Navegacion principal">
+      <a class="brand" href="#inicio" aria-label="Coffee Golden, inicio">
+        <span class="brand-mark" aria-hidden="true">C</span>
+        <span>Coffee Golden</span>
+      </a>
+      <button class="menu-button" id="menuButton" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-menu" id="navMenu">
+        <a href="#experiencia">Experiencia</a>
+        <a href="#pasaporte">Pasaporte</a>
+        <a href="#territorios">Territorios</a>
+        <a href="#productos">Productos</a>
+        <a href="#coins">Coffee Coins</a>
+        <a href="#pedido">Mi pedido</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <p class="pill"><span class="mini-coin">C</span> QR verificado · Lote CG-2026-EC</p>
+        <h1>Descubre la historia detras de <em>tu cafe.</em></h1>
+        <p class="hero-lead">Tu escaneo te trajo al pasaporte Coffee Golden: conoce el origen, el tostado y la preparacion del sobre que tienes en tus manos.</p>
+        <div class="hero-actions">
+          <a class="button button-gold" href="#pasaporte">Conocer este lote <span aria-hidden="true">›</span></a>
+          <a class="button button-ghost" href="#productos">Comprar sobres</a>
+        </div>
+        <div class="stats" aria-label="Datos de Coffee Golden">
+          <div><strong>100%</strong><span>Cafe de grano</span></div>
+          <div><strong>3x</strong><span>Mas rapido</span></div>
+          <div><strong>+500</strong><span>Clientes activos</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience-section" id="experiencia">
+      <div class="section-heading shell">
+        <p class="eyebrow">La experiencia Coffee Golden</p>
+        <h2>Mas que un cafe</h2>
+        <p>Calidad artesanal, informacion de origen y tecnologia inteligente en una sola experiencia.</p>
+      </div>
+      <div class="feature-grid shell">
+        <article><span class="feature-icon">%</span><h3>Descuentos exclusivos</h3><p>Promociones personalizadas que mejoran con tu historial de compras.</p></article>
+        <article><span class="feature-icon">i</span><h3>Informacion del producto</h3><p>Conoce el origen, proceso, tueste y notas de sabor de tu cafe.</p></article>
+        <article><span class="feature-icon">QR</span><h3>Experiencia digital simple</h3><p>Escanea el codigo del empaque y abre el pasaporte del lote.</p></article>
+        <article><span class="feature-icon">C</span><h3>Recompensas reales</h3><p>Coffee Coins que se convierten en descuentos y productos.</p></article>
+      </div>
+    </section>
+
+    <section class="passport-section" id="pasaporte">
+      <div class="passport-visual">
+        <img src="./assets/caja-sobres.webp" alt="Caja Coffee Golden con sobres filtrantes individuales">
+        <div class="coin-status"><span class="mini-coin">C</span><strong id="coinBalance">275</strong><small>Coffee Coins</small></div>
+        <div class="scan-status"><span class="qr-symbol">QR</span><div><strong>QR escaneado</strong><small>+35 Coffee Coins</small></div></div>
+      </div>
+      <div class="passport-copy">
+        <p class="eyebrow">Pasaporte cafetero</p>
+        <h2>Escanea. Descubre. Disfruta.</h2>
+        <p>Cada sobre conecta al cliente con la historia real del cafe: origen, proceso, tostado y recomendaciones de preparacion.</p>
+        <span class="verified-badge"><span class="qr-symbol">QR</span> Codigo verificado</span>
+        <div class="passport-data" id="passportData" aria-live="polite">
+          <div class="passport-grid">
+            <div><span>Origen</span><strong>Loja, Ecuador</strong></div>
+            <div><span>Finca</span><strong>El Dorado</strong></div>
+            <div><span>Proceso</span><strong>Lavado</strong></div>
+            <div><span>Tueste</span><strong>Medio</strong></div>
+            <div><span>Notas</span><strong>Cacao y nuez</strong></div>
+            <div><span>Lote</span><strong>CG-2026-EC</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="territories-section" id="territorios">
+      <div class="section-heading shell">
+        <p class="eyebrow">Origen ecuatoriano</p>
+        <h2>Territorios de cafe y cacao</h2>
+        <p>Un recorrido ilustrado por las comunidades, paisajes y saberes que dan origen a dos de los grandes sabores del Ecuador.</p>
+      </div>
+
+      <div class="map-layout shell">
+        <div class="map-canvas">
+          <img src="./assets/mapa-ecuador-provincias.webp" alt="Mapa ilustrado del Ecuador con provincias cafeteras y cacaoteras, personajes y elementos culturales">
+
+          <button class="map-marker nature" style="--x: 13%; --y: 13%;" type="button" aria-label="Ver Galapagos"
+            data-territory="Galapagos" data-region="Region insular" data-product="Biodiversidad y conservacion" data-description="Un simbolo de la biodiversidad ecuatoriana y del compromiso con experiencias de origen responsables."><span></span></button>
+          <button class="map-marker coffee" style="--x: 34%; --y: 17%;" type="button" aria-label="Ver Esmeraldas"
+            data-territory="Esmeraldas" data-region="Costa norte" data-product="Cafe costero y cacao" data-description="Bosques humedos, fincas familiares y sabores intensos conectados con la identidad afroecuatoriana."><span></span></button>
+          <button class="map-marker coffee" style="--x: 55%; --y: 19%;" type="button" aria-label="Ver Imbabura"
+            data-territory="Imbabura" data-region="Sierra norte" data-product="Cafe de altura" data-description="Cafe cultivado entre montanas y valles andinos, con perfiles aromaticos y una acidez delicada."><span></span></button>
+          <button class="map-marker cacao" style="--x: 77%; --y: 25%;" type="button" aria-label="Ver Sucumbios"
+            data-territory="Sucumbios" data-region="Amazonia norte" data-product="Cacao amazonico" data-description="Cacao rodeado de selva y biodiversidad, cultivado con conocimientos comunitarios de la Amazonia."><span></span></button>
+          <button class="map-marker coffee" style="--x: 34%; --y: 34%;" type="button" aria-label="Ver Santo Domingo de los Tsachilas"
+            data-territory="Santo Domingo de los Tsachilas" data-region="Transicion Costa-Andes" data-product="Cafe y cacao tropical" data-description="Una zona de encuentro entre regiones, reconocida por su agricultura tropical y su cultura Tsachila."><span></span></button>
+          <button class="map-marker coffee active" style="--x: 47%; --y: 30%;" type="button" aria-label="Ver Pichincha"
+            data-territory="Pichincha" data-region="Sierra centro-norte" data-product="Cafe de altura" data-description="Cultivos andinos con perfiles aromaticos, acidez brillante y procesos artesanales."><span></span></button>
+          <button class="map-marker cacao" style="--x: 69%; --y: 39%;" type="button" aria-label="Ver Orellana"
+            data-territory="Orellana" data-region="Amazonia" data-product="Cacao fino de aroma" data-description="Cacao amazonico de gran riqueza aromatica, ligado a sistemas productivos diversos y sostenibles."><span></span></button>
+          <button class="map-marker coffee" style="--x: 23%; --y: 46%;" type="button" aria-label="Ver Manabi"
+            data-territory="Manabi" data-region="Costa" data-product="Cafe y cacao" data-description="Un territorio donde conviven cafetales, cacao fino de aroma y saberes transmitidos entre generaciones."><span></span></button>
+          <button class="map-marker coffee" style="--x: 48%; --y: 44%;" type="button" aria-label="Ver Cotopaxi"
+            data-territory="Cotopaxi" data-region="Sierra central" data-product="Cafe de montana" data-description="Fincas de altura bajo la presencia de los Andes, con cafes limpios y perfiles dulces."><span></span></button>
+          <button class="map-marker coffee" style="--x: 49%; --y: 53%;" type="button" aria-label="Ver Tungurahua"
+            data-territory="Tungurahua" data-region="Sierra central" data-product="Cafe de altura" data-description="Cafe producido entre suelos volcanicos, huertos andinos y una fuerte tradicion agricola."><span></span></button>
+          <button class="map-marker cacao" style="--x: 67%; --y: 51%;" type="button" aria-label="Ver Pastaza"
+            data-territory="Pastaza" data-region="Amazonia central" data-product="Cacao amazonico" data-description="Cacao cultivado en sistemas de bosque que integran biodiversidad, cultura y conocimiento ancestral."><span></span></button>
+          <button class="map-marker coffee" style="--x: 36%; --y: 62%;" type="button" aria-label="Ver Bolivar"
+            data-territory="Bolivar" data-region="Sierra central" data-product="Cafe artesanal" data-description="Pequenas fincas serranas con cosecha manual, paisajes diversos y perfiles de sabor equilibrados."><span></span></button>
+          <button class="map-marker cacao" style="--x: 65%; --y: 65%;" type="button" aria-label="Ver Morona Santiago"
+            data-territory="Morona Santiago" data-region="Amazonia sur" data-product="Cacao y cultura amazonica" data-description="Cacao vinculado a comunidades amazonicas, chacras biodiversas y procesos artesanales de poscosecha."><span></span></button>
+          <button class="map-marker coffee" style="--x: 46%; --y: 72%;" type="button" aria-label="Ver Chimborazo"
+            data-territory="Chimborazo" data-region="Sierra central" data-product="Cafe andino" data-description="Cafe de altura producido entre montanas, comunidades rurales y paisajes de gran identidad andina."><span></span></button>
+          <button class="map-marker coffee" style="--x: 33%; --y: 84%;" type="button" aria-label="Ver Loja"
+            data-territory="Loja" data-region="Sierra sur" data-product="Cafe de especialidad" data-description="Cafe reconocido por su dulzor, aroma floral y notas de cacao, panela y frutos secos."><span></span></button>
+        </div>
+
+        <aside class="territory-panel" aria-live="polite">
+          <div class="map-legend"><span><i class="coffee-dot"></i>Cafe</span><span><i class="cacao-dot"></i>Cacao</span><span><i class="nature-dot"></i>Biodiversidad</span></div>
+          <p class="eyebrow">Territorio seleccionado</p>
+          <h3 id="territoryTitle">Pichincha</h3>
+          <span class="territory-region" id="territoryRegion">Sierra centro-norte</span>
+          <strong id="territoryProduct">Cafe de altura</strong>
+          <p id="territoryDescription">Cultivos andinos con perfiles aromaticos, acidez brillante y procesos artesanales.</p>
+          <small>Los puntos son una guia cultural referencial y no representan un ranking de calidad.</small>
+        </aside>
+      </div>
+    </section>
+
+    <section class="coins-section" id="coins">
+      <div class="shell coins-layout">
         <div>
-          <span class="eyebrow">Golden Chain</span>
-          <h1>Coffee Golden</h1>
+          <p class="eyebrow">Programa de beneficios</p>
+          <h2>Coffee Coins:<br><em>cada sorbo cuenta.</em></h2>
+          <p>Cada vez que compras y escaneas tu QR, acumulas Coffee Coins. Tus puntos se convierten en descuentos, productos gratis y promociones exclusivas.</p>
+          <ul>
+            <li>Acumula coins con cada compra</li>
+            <li>Canjea descuentos desde 50 coins</li>
+            <li>Obtiene productos gratis con 500 coins</li>
+          </ul>
         </div>
-        <button class="icon-button" type="button" data-tab-target="profile" aria-label="Abrir perfil">CG</button>
-      </header>
-
-      <section class="tab-view is-active" id="home" aria-labelledby="homeTitle">
-        <div class="hero-card">
-          <span class="hero-label">Coffee Coins</span>
-          <h2 id="homeTitle"><span id="coinBalance">0</span> coins</h2>
-          <p>Gana puntos con cada pedido y revisa la trazabilidad del cafe.</p>
-          <button class="button dark" type="button" data-tab-target="menu">Pedir ahora</button>
+        <div class="balance-panel">
+          <span>Mi saldo</span>
+          <strong><span id="balanceLarge">275</span> <small>coins</small></strong>
+          <div class="progress"><span></span></div>
+          <p>260 coins para tu proximo regalo</p>
         </div>
+      </div>
+    </section>
 
-        <section class="quick-actions" aria-label="Acciones principales">
-          <button type="button" data-tab-target="menu">
-            <span>Menu</span>
-            <strong>Personaliza</strong>
-          </button>
-          <button type="button" data-tab-target="trace">
-            <span>QR</span>
-            <strong>Origen</strong>
-          </button>
-          <button type="button" data-tab-target="wallet">
-            <span>Coins</span>
-            <strong>Premios</strong>
-          </button>
-        </section>
+    <section class="products-section" id="productos">
+      <div class="section-heading shell">
+        <p class="eyebrow">Lo que ofrecemos</p>
+        <h2>Nuestros productos</h2>
+        <p>Tres formas de disfrutar Coffee Golden. Todas incluyen acceso a la experiencia digital.</p>
+      </div>
+      <div class="product-grid shell" id="productGrid"></div>
+    </section>
 
-        <section>
-          <div class="section-heading">
-            <h2>Pedido activo</h2>
-            <span id="activeOrderCount">0 items</span>
+    <section class="checkout-section" id="pedido">
+      <div class="shell checkout-layout">
+        <div class="cart-panel">
+          <p class="eyebrow">Tu seleccion</p>
+          <h2>Mi pedido</h2>
+          <div id="cartList" class="cart-list"><p class="empty-state">Todavia no agregaste productos.</p></div>
+          <div class="cart-total"><span>Total</span><strong id="cartTotal">S/ 0.00</strong></div>
+        </div>
+        <form class="order-form" id="orderForm">
+          <div class="form-grid">
+            <label>Nombre<input id="customerName" name="customerName" type="text" required placeholder="Tu nombre"></label>
+            <label>Correo<input id="customerEmail" name="customerEmail" type="email" required placeholder="correo@ejemplo.com"></label>
           </div>
-          <div class="cart-preview" id="cartPreview">
-            <p class="empty-state">Selecciona una bebida para crear tu pedido.</p>
-          </div>
-        </section>
-      </section>
-
-      <section class="tab-view" id="menu" aria-labelledby="menuTitle">
-        <div class="section-heading">
-          <h2 id="menuTitle">Menu digital</h2>
-          <span>Elige tu cafe</span>
-        </div>
-        <div class="menu-list" id="menuList"></div>
-      </section>
-
-      <section class="tab-view" id="order" aria-labelledby="orderTitle">
-        <div class="section-heading">
-          <h2 id="orderTitle">Tu pedido</h2>
-          <span id="orderTotal">$0.00</span>
-        </div>
-
-        <div class="order-items" id="orderItems">
-          <p class="empty-state">Tu carrito esta vacio.</p>
-        </div>
-
-        <form class="checkout-form" id="orderForm">
-          <label for="customerName">Nombre</label>
-          <input id="customerName" name="customerName" type="text" placeholder="Ej. Sofia" required>
-
-          <label for="pickupMode">Entrega</label>
-          <select id="pickupMode" name="pickupMode">
-            <option value="Retiro en tienda">Retiro en tienda</option>
-            <option value="Entrega a domicilio">Entrega a domicilio</option>
-          </select>
-
-          <label for="notes">Notas</label>
-          <textarea id="notes" name="notes" rows="3" placeholder="Ej. sin azucar, leche vegetal"></textarea>
-
-          <button class="button primary" type="submit">Confirmar pedido</button>
+          <label>Entrega<select id="deliveryMode" name="deliveryMode"><option>Retiro en punto de venta</option><option>Entrega a domicilio</option></select></label>
+          <label>Notas<textarea id="notes" name="notes" rows="3" placeholder="Direccion o indicaciones"></textarea></label>
+          <button class="button button-dark full-width" type="submit">Confirmar pedido</button>
           <p class="status-message" id="statusMessage" role="status"></p>
         </form>
-      </section>
+      </div>
+    </section>
 
-      <section class="tab-view" id="trace" aria-labelledby="traceTitle">
-        <div class="section-heading">
-          <h2 id="traceTitle">Pasaporte QR</h2>
-          <span>Lote CG-2026-EC</span>
-        </div>
-        <div class="qr-card">
-          <div class="qr-grid" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span>
-          </div>
-          <button class="button dark" type="button" id="scanButton">Escanear demo</button>
-        </div>
-        <div class="trace-panel" id="tracePanel">
-          <p class="empty-state">Toca escanear para ver el origen del cafe.</p>
-        </div>
-      </section>
-
-      <section class="tab-view" id="wallet" aria-labelledby="walletTitle">
-        <div class="section-heading">
-          <h2 id="walletTitle">Coffee Coins</h2>
-          <span>Recompensas</span>
-        </div>
-        <div class="wallet-card">
-          <span>Saldo disponible</span>
-          <strong><span id="walletBalance">0</span> coins</strong>
-        </div>
-        <div class="reward-list">
-          <article>
-            <span>50 coins</span>
-            <strong>Shot extra gratis</strong>
-          </article>
-          <article>
-            <span>120 coins</span>
-            <strong>10% de descuento</strong>
-          </article>
-          <article>
-            <span>250 coins</span>
-            <strong>Bebida exclusiva</strong>
-          </article>
-        </div>
-      </section>
-
-      <section class="tab-view" id="profile" aria-labelledby="profileTitle">
-        <div class="section-heading">
-          <h2 id="profileTitle">Actividad</h2>
-          <span>Firestore</span>
-        </div>
-        <div class="orders-list" id="ordersList">
-          <p class="empty-state">Todavia no hay pedidos guardados.</p>
-        </div>
-      </section>
-
-      <nav class="bottom-nav" aria-label="Navegacion de la app">
-        <button class="is-active" type="button" data-tab-target="home" aria-label="Inicio">
-          <span>Inicio</span>
-        </button>
-        <button type="button" data-tab-target="menu" aria-label="Menu">
-          <span>Menu</span>
-        </button>
-        <button type="button" data-tab-target="order" aria-label="Pedido">
-          <span>Pedido</span>
-        </button>
-        <button type="button" data-tab-target="trace" aria-label="QR">
-          <span>QR</span>
-        </button>
-        <button type="button" data-tab-target="wallet" aria-label="Coins">
-          <span>Coins</span>
-        </button>
-      </nav>
+    <section class="cta-section">
+      <span class="brand-mark light" aria-hidden="true">C</span>
+      <h2>Empieza tu experiencia dorada hoy.</h2>
+      <p>Escanea, acumula y disfruta Coffee Golden.</p>
+      <a class="button button-dark" href="#productos">Ver productos <span aria-hidden="true">›</span></a>
     </section>
   </main>
+
+  <footer class="footer">
+    <div class="shell footer-layout">
+      <div><a class="brand footer-brand" href="#inicio"><span class="brand-mark" aria-hidden="true">C</span><span>Coffee Golden</span></a><p>Cafe seleccionado, tecnologia y recompensas en cada pausa.</p></div>
+      <div><strong>Productos</strong><a href="#productos">Sobre filtrante</a><a href="#productos">Caja de sobres</a><a href="#productos">Combo Golden</a></div>
+      <div><strong>Plataforma</strong><a href="#coins">Coffee Coins</a><a href="#pasaporte">Informacion del producto</a><a href="#pedido">Mi pedido</a></div>
+    </div>
+  </footer>
 
   <script type="module" src="./script.js"></script>
 </body>
